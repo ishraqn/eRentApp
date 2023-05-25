@@ -1,6 +1,6 @@
 # SegmentationFault
 
-An app which is based off the old saying *"Try-before-you-buy"*, where .
+An app which is based off the old saying *"Try-before-you-buy"*, where reducing waste is priority number 1.
 
 ## Vision Statement
 SegmentationFault's App will be a storefront to rent out items and equipment which would normally sit unused. Users can be both a **Renter** and a **Rentee** and anyone can sign-up, including businesses. **Renters** can post their items and specify price, availability and max rental duration. **Rentees** can browse the homepage, search and then items, and rate previous rent experiences. A rating-based honour system helps users understand risk between both exchanging sides, as it's split into **Renter** and **Rentee** scores. In addition, the process of posting, renting and paying is streamlined in a "marketplace" fashion to make the entire experience as easy as possible. Every feature is created with our motto in mind: *"Try-before-you-buy"*, with the goal of reducing over-consumption and waste.
@@ -8,7 +8,7 @@ SegmentationFault's App will be a storefront to rent out items and equipment whi
 </br>
 
 ### Value Proposition
-Our storefront App encourages waste-reduction and community growth through mutually beneficial renting of items. Users who own things they don't normally use, such a Boat, can rent it for passive income, to another user anytime they wish, as an extra source of income. On the flipside, a user who may be looking to buy a boat, but doesn't know if they want to commit to such a purchase, can rent from the aforementioned user and try it out. Both users win; the **Renter** makes passive income; the **Rentee** gets to use the boat, and can decide whether they want to buy or just continue renting. This *"Try-before-you-buy"* model is at the heart of our App, with the goal of reducing over-consumption and waste. These exchanges are also backed by our dual-rating system, where users have a renter and rentee score respectively, so no side is left sceptable.
+Our storefront App encourages waste-reduction and community growth through mutually beneficial renting of items. Users who own things they don't normally use, such a Boat, can rent it for passive income, to another user anytime they wish, as an extra source of income. On the flipside, a user who may be looking to buy a boat, but doesn't know if they want to commit to such a purchase, can rent from the aforementioned user and try it out. Both users win; the **Renter** makes passive income; the **Rentee** gets to use the boat, and can decide whether they want to buy or just continue renting. This *"Try-before-you-buy"* model is at the heart of our App, with the goal of reducing over-consumption and waste. These exchanges are also backed by our dual-rating system, where users have a renter and rentee score respectively, so no side is left skeptical.
 
 </br>
 
