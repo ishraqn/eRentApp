@@ -1,7 +1,8 @@
-package com.erent;
+package com.erent.presentation;
 
 import android.os.Bundle;
 
+import com.erent.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;

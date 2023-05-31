@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ERent">
         <activity
-            android:name=".ScrollingActivity"
+            android:name=".presentation.ScrollingActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ERent.NoActionBar">
