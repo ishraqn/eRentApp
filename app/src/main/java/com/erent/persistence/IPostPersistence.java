@@ -2,7 +2,11 @@ package com.erent.persistence;
 
 import com.erent.objects.Post;
 
+import java.util.List;
+
 public interface IPostPersistence {
+
+    List<Post> getPostList();
 
     Post getPostByID(int postID);
 

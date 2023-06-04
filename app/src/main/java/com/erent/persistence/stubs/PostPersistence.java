@@ -21,6 +21,11 @@ public class PostPersistence implements IPostPersistence {
         postList.add(new Post(5,"Rode NT1A", 5, "1845 Pembina Highway, Winnipeg", "Sound"));
     }
 
+    public List<Post> getPostList()
+    {
+        return postList;
+    }
+
     @Override
     public Post getPostByID(int postID)
     {
