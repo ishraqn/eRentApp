@@ -24,6 +24,7 @@ public class UserLogic implements IUserLogic{
     public boolean authenticateUser(int userID,String username)
     {
         User user = userDB.getUserByID(userID);
+        
         return user.getUsername().equals(username);
     }
 }
