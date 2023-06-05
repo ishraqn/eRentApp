@@ -33,9 +33,8 @@ public class UserLogic implements IUserLogic {
     public boolean userAuth(int ID,String UserName)
     {
         User userID = UserDB.getUserByID(ID);
-        User userName = UserDB.getUserByUsername(UserName);
 
-        if (userID != null && userName != null && userID.getUsername().equals(UserName) && userName.getUserID() == ID)
+        if (userID != null && userID.getUsername().equals(UserName))
         {
             return true;
         }
