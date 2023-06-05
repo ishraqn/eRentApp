@@ -35,7 +35,7 @@ public class UserLogic implements IUserLogic {
         User userID = UserDB.getUserByID(ID);
         User userName = UserDB.getUserByUsername(UserName);
 
-        if (userID != null && userName != null && userID.getUserByUsername.equals(userName) && userName.ID() == ID)
+        if (userID != null && userName != null && userID.getUsername().equals(UserName) && userName.getUserID() == ID)
         {
             return true;
         }
