@@ -1,10 +1,10 @@
-package com.erent.Logic;
+package com.erent.logic;
 
 import com.erent.objects.User;
 
 public interface IUserLogic
 {
-    boolean createNewUser(String UserName);
-    boolean deleteUser(int ID);
-    boolean userAuth(int ID,String UserName);
+    User createNewUser(String username);
+    boolean deleteUser(int userID);
+    boolean authenticateUser(int userID,String username);
 }
