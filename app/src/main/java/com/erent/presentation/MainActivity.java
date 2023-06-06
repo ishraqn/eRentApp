@@ -16,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.core.view.WindowCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Window;
 import android.view.View;

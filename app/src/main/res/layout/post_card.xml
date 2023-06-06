@@ -29,6 +29,7 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/rent_period"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
@@ -42,6 +43,7 @@
         android:textSize="16sp" />
 
     <TextView
+        android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
