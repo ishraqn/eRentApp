@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This drawable changes the colors of the selected and non-selected nav bar buttons -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:color="@color/blue_600" />
+    <item android:color="@color/blue_200"  />
+</selector>

@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView navBar;
     private HomepageFragment homeFrag = new HomepageFragment();
     private RentalsFragment rentalsFrag = new RentalsFragment();
+    private BookmarksFragment bookmarksFrag = new BookmarksFragment();
+    private ProfileFragment profileFrag = new ProfileFragment();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +62,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.layout_homepage:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFrag).commit();
                     break;
-                    case R.id.layout_login:
+                    case R.id.layout_rentals:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, rentalsFrag).commit();
+                    break;
+                    case R.id.layout_bookmarks:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, bookmarksFrag).commit();
+                    break;
+                    case R.id.layout_profile:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, profileFrag).commit();
                     break;
                 }
                 return swapped;
