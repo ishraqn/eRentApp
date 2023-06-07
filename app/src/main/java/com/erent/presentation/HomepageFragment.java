@@ -11,8 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.erent.Logic.IPostLogic;
-import com.erent.Logic.PostLogic;
+import com.erent.logic.IPostLogic;
+import com.erent.logic.PostLogic;
 import com.erent.R;
 import com.erent.objects.Post;
 import com.erent.persistence.stubs.PostPersistence;

@@ -1,4 +1,4 @@
-package com.erent.Logic;
+package com.erent.logic;
 
 import com.erent.objects.Post;
 
