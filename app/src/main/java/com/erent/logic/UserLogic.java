@@ -21,10 +21,9 @@ public class UserLogic implements IUserLogic{
         return userDB.deleteUser(userID);
     }
 
-    public boolean authenticateUser(int userID,String username)
+    public boolean authenticateUser(String username)
     {
-        User user = userDB.getUserByID(userID);
-        
+        User user = userDB.getUserByUsername(username);
         return user.getUsername().equals(username);
     }
 }
