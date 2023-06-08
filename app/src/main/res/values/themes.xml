@@ -7,9 +7,9 @@
         <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/blue_200</item>
+        <item name="colorSecondary">@color/blue_200</item>
+        <item name="colorSecondaryVariant">@color/blue_400</item>
+        <item name="colorOnSecondary">@color/blue_600</item>
 
         <!-- Force fullscreen -->
         <item name="android:windowNoTitle">true</item>
@@ -17,9 +17,9 @@
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
     </style>
 
-
+    <!-- This is used ONLY by the navbar, and is used to set the selected text color-->
     <style name="Theme.NavBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/blue_600</item>
+        <item name="colorPrimary">@color/green_600</item>
 
     </style>
 </resources>
