@@ -17,4 +17,3 @@ Our success for the App is represented by our 3 core features: renting an item, 
 - **Renting an item**: All users are able to find an item they wish to rent, through our homepage or by searching, and obtain a rental agreement through our supported payment methods. This agreement includes rental duration, cost and delivery/pick-up method.
 - **Posting rentals**: All users are able to post their item for rent by uploading images, setting availability, accepted payment methods and pick-up/delivery options. Any request by a user wishing to rent out something can also be denied, if the user who posted thinks their rating is too low.
 - **Ratings**: All users are able to receive ratings for items they rented or items they themselves rented out, and can see other users ratings as well. This self-sustaining honour system is clearly represented on all profiles and postings.
-
