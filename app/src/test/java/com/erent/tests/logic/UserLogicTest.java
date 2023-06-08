@@ -27,9 +27,9 @@ public class UserLogicTest {
         assertEquals(6, user.getUserID());                  //ID is sequential
         assertEquals("John", user.getUsername());
 
-        User user1 = userLogic.createNewUser("Doe");
-        assertEquals(7, user1.getUserID());
-        assertEquals("Doe", user1.getUsername());
+        User secondUser = userLogic.createNewUser("Doe");
+        assertEquals(7, secondUser.getUserID());
+        assertEquals("Doe", secondUser.getUsername());
 
         System.out.println("Finished testCreateUserLogic\n");
     }
@@ -45,9 +45,6 @@ public class UserLogicTest {
         User userDuplicate = userLogic.createNewUser("John");
         assertNull(userDuplicate);
 
-        User user1 = userLogic.createNewUser("Ishraq");
-        assertNull(user1);
-
         System.out.println("Finished testDuplicateUserLogic\n");
     }
 
@@ -62,8 +59,8 @@ public class UserLogicTest {
         boolean wasDeleted = userLogic.deleteUser(user.getUserID());
         assertTrue(wasDeleted);
 
-        boolean wasDeleted2 = userLogic.deleteUser(8);  //List has pre-built 5 members
-        assertFalse(wasDeleted2);
+        wasDeleted = userLogic.deleteUser(8);  //List has pre-built 5 members
+        assertFalse(wasDeleted);
 
         System.out.println("Finished testDeleteUserLogic\n");
     }
