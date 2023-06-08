@@ -6,5 +6,5 @@ public interface IUserLogic
 {
     User createNewUser(String username);
     boolean deleteUser(int userID);
-    boolean authenticateUser(int userID,String username);
+    boolean authenticateUser(String username);
 }
