@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import com.erent.objects.Post;
-import com.erent.Logic.PostLogic;
+import com.erent.logic.PostLogic;
 import com.erent.persistence.stubs.PostPersistence;
 
 import java.util.List;
