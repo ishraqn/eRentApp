@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">eRent</string>
     <string name="sign_up">Need an account? <font color="#18ba12">Sign up.</font></string>
+    <string name="login">Already have an account? <font color="#18ba12">Login.</font></string>
 
     <string name="large_text">
         "Material is the metaphor.\n\n"
