@@ -4,7 +4,7 @@ import com.erent.objects.User;
 
 public interface IUserLogic
 {
-    User createNewUser(String username);
-    boolean deleteUser(int userID);
-    boolean authenticateUser(String username);
+    User createNewUser(String username, String password);
+    boolean deleteUser(String username);
+    boolean authenticateUser(String username, String password);
 }

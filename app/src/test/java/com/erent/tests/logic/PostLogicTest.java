@@ -45,4 +45,43 @@ public class PostLogicTest {
 
         System.out.println("Finished testDeletePost\n");
     }
+
+    @Test
+    public void testGetFirstNPostsEqual() {
+        PostLogic pl = new PostLogic(new PostPersistence());
+        List<Post> firstNPosts;
+        int n = 5;
+
+        firstNPosts = pl.getFirstNPosts(n);
+
+        assertEquals(5, firstNPosts.size());
+
+        System.out.println("Finished testGetFirstNPostsEqual\n");
+    }
+
+    @Test
+    public void testGetFirstNPostsLess() {
+        PostLogic pl = new PostLogic(new PostPersistence());
+        List<Post> firstNPosts;
+        int n = 4;
+
+        firstNPosts = pl.getFirstNPosts(n);
+
+        assertEquals(4, firstNPosts.size());
+
+        System.out.println("Finished testGetFirstNPostsLess\n");
+    }
+
+    @Test
+    public void testGetFirstNPostsGreater() {
+        PostLogic pl = new PostLogic(new PostPersistence());
+        List<Post> firstNPosts;
+        int n = 7;
+
+        firstNPosts = pl.getFirstNPosts(n);
+
+        assertEquals(5, firstNPosts.size());
+
+        System.out.println("Finished testGetFirstNPostsGreater\n");
+    }
 }
