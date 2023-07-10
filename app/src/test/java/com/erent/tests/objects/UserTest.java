@@ -19,11 +19,38 @@ public class UserTest
     {
         System.out.println("Starting testConstructUser");
 
-        User user = new User(1, "Foo");
+        User user = new User("Foo", "1234");
 
-        assertEquals(1, user.getUserID());
         assertEquals("Foo", user.getUsername());
 
         System.out.println("Finished testConstructUser\n");
+    }
+
+    @Test
+    public void testAuthenticateUser()
+    {
+        System.out.println("Starting testAuthenticateUser");
+
+        User user = new User("Foo", "1234");
+
+        boolean authentic = user.authenticateUser("1234");
+
+        assertTrue(authentic);
+
+        System.out.println("Finished testAuthenticateUser\n");
+    }
+
+    @Test
+    public void testAuthenticateUserFail()
+    {
+        System.out.println("Starting testAuthenticateUserFail");
+
+        User user = new User("Foo", "1234");
+
+        boolean authentic = user.authenticateUser("4321");
+
+        assertFalse(authentic);
+
+        System.out.println("Finished testAuthenticateUserFail\n");
     }
 }
