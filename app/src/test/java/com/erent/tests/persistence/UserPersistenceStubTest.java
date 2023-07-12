@@ -22,9 +22,8 @@ public class UserPersistenceStubTest
 
         UserPersistence userPersistence = new UserPersistence();
 
-        User user = userPersistence.createUser("Foo");
+        User user = userPersistence.createUser("Foo", "1234");
 
-        assertEquals(6, user.getUserID());
         assertEquals("Foo", user.getUsername());
 
         System.out.println("Finished testCreateUser\n");
@@ -37,7 +36,7 @@ public class UserPersistenceStubTest
 
         UserPersistence userPersistence = new UserPersistence();
 
-        User user = userPersistence.createUser("Brett");
+        User user = userPersistence.createUser("Brett", "1234");
 
         assertNull(user);
 
@@ -51,11 +50,10 @@ public class UserPersistenceStubTest
 
         UserPersistence userPersistence = new UserPersistence();
 
-        boolean wasDeleted = userPersistence.deleteUser(1);
+        boolean wasDeleted = userPersistence.deleteUser("Brett");
 
         assertEquals(true, wasDeleted);
         assertNull(userPersistence.getUserByUsername("Brett"));
-        assertNull(userPersistence.getUserByID(1));
 
         System.out.println("Finished testDeleteUser\n");
     }
@@ -67,7 +65,7 @@ public class UserPersistenceStubTest
 
         UserPersistence userPersistence = new UserPersistence();
 
-        boolean wasDeleted = userPersistence.deleteUser(6);
+        boolean wasDeleted = userPersistence.deleteUser("Foo");
 
         assertEquals(false, wasDeleted);
 

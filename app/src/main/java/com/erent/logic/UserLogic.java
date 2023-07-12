@@ -11,19 +11,21 @@ public class UserLogic implements IUserLogic{
         this.userDB = database;
     }
 
-    public User createNewUser(String username)
+    @Override
+    public User createNewUser(String username, String password)
     {
-        return userDB.createUser(username);
+        return userDB.createUser(username, password);
     }
 
-    public boolean deleteUser(int userID)
+    @Override
+    public boolean deleteUser(String username)
     {
-        return userDB.deleteUser(userID);
+        return userDB.deleteUser(username);
     }
 
-    public boolean authenticateUser(String username)
+    @Override
+    public boolean authenticateUser(String username, String password)
     {
-        User user = userDB.getUserByUsername(username);
-        return user.getUsername().equals(username);
+        return userDB.authenticateUser(username, password);
     }
 }

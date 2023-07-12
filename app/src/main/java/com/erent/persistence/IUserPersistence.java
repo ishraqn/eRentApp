@@ -4,11 +4,11 @@ import com.erent.objects.User;
 
 public interface IUserPersistence
 {
-    User getUserByID(int userID);
-
     User getUserByUsername(String username);
 
-    User createUser(String username);
+    User createUser(String username, String password);
 
-    boolean deleteUser(int userID);
+    boolean deleteUser(String username);
+
+    boolean authenticateUser(String username, String password);
 }

@@ -2,22 +2,22 @@ package com.erent.objects;
 
 public class User
 {
-    private int userID;
     private String username;
+    private String password;
 
-    public User(int userID, String username)
+    public User(String username, String password)
     {
-        this.userID = userID;
         this.username = username;
-    }
-
-    public int getUserID()
-    {
-        return userID;
+        this.password = password;
     }
 
     public String getUsername()
     {
         return username;
+    }
+
+    public boolean authenticateUser(String password)
+    {
+        return this.password == password;
     }
 }

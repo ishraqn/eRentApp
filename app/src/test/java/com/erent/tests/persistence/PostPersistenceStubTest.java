@@ -26,7 +26,7 @@ public class PostPersistenceStubTest {
 
         assertEquals(1,post.getPostID());
         assertEquals("Electric Breaker 35 lbs",post.getPostName());
-        assertEquals(1,post.getPostedBy());
+        assertEquals("Brett",post.getPostedBy());
         assertEquals("66 Chancellors Circle, Winnipeg",post.getLocation());
         assertEquals("Construction",post.getCategory());
 
@@ -44,7 +44,7 @@ public class PostPersistenceStubTest {
 
         assertEquals(1,post.getPostID());
         assertEquals("Electric Breaker 35 lbs",post.getPostName());
-        assertEquals(1,post.getPostedBy());
+        assertEquals("Brett",post.getPostedBy());
         assertEquals("66 Chancellors Circle, Winnipeg",post.getLocation());
         assertEquals("Construction",post.getCategory());
 
@@ -58,11 +58,11 @@ public class PostPersistenceStubTest {
 
         PostPersistence postPersistence = new PostPersistence();
 
-        Post post = postPersistence.createPost("Backlight",2,"Winnipeg","sound");
+        Post post = postPersistence.createPost("Backlight","Alejandro","Winnipeg","sound");
 
         assertEquals(6,post.getPostID());
         assertEquals("Backlight",post.getPostName());
-        assertEquals(2,post.getPostedBy());
+        assertEquals("Alejandro",post.getPostedBy());
         assertEquals("Winnipeg",post.getLocation());
         assertEquals("sound",post.getCategory());
 
@@ -76,19 +76,19 @@ public class PostPersistenceStubTest {
 
         PostPersistence postPersistence = new PostPersistence();
 
-        Post post = postPersistence.createPost("Backlight",2,"Winnipeg","sound");
+        Post post = postPersistence.createPost("Backlight","Alejandro","Winnipeg","sound");
 
         assertEquals(6,post.getPostID());
         assertEquals("Backlight",post.getPostName());
-        assertEquals(2,post.getPostedBy());
+        assertEquals("Alejandro",post.getPostedBy());
         assertEquals("Winnipeg",post.getLocation());
         assertEquals("sound",post.getCategory());
 
-        Post post2 = postPersistence.createPost("Backlight",2,"Winnipeg","sound");
+        Post post2 = postPersistence.createPost("Backlight","Alejandro","Winnipeg","sound");
 
         assertEquals(7,post2.getPostID());
         assertEquals("Backlight",post2.getPostName());
-        assertEquals(2,post2.getPostedBy());
+        assertEquals("Alejandro",post2.getPostedBy());
         assertEquals("Winnipeg",post2.getLocation());
         assertEquals("sound",post2.getCategory());
 

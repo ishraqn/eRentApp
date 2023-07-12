@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/post"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient">
+
+    <!-- Top bar (back and rent buttons) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="414dp"
+        android:layout_height="94dp"
+        android:background="@drawable/gradient"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageButton
+            android:id="@+id/buttonBack"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:background="@null"
+            android:elevation="10dp"
+            android:padding="14dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icon_back"
+            tools:layout_editor_absoluteX="1dp" />
+
+<!--   These are commented our currently, as their usage comes in Iteration3     -->
+<!--        <Button-->
+<!--            android:id="@+id/buttonRent"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_marginEnd="7dp"-->
+<!--            android:background="@drawable/button_green"-->
+<!--            android:backgroundTint="@null"-->
+<!--            android:fontFamily="sans-serif-medium"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="Rent"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Medium"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textColor="@color/lt_grey"-->
+<!--            app:backgroundTint="@null"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.97"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+<!--        <ImageButton-->
+<!--            android:id="@+id/buttonBookmark"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:layout_marginTop="7dp"-->
+<!--            android:layout_marginBottom="7dp"-->
+<!--            android:background="@null"-->
+<!--            android:elevation="10dp"-->
+<!--            android:padding="18dp"-->
+<!--            android:scaleType="fitCenter"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/buttonRent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:srcCompat="@drawable/icon_bookmark" />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Contents of post, which are scrollable -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        tools:layout_editor_absoluteX="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Post Image -->
+            <ImageView
+                android:id="@+id/picture"
+                android:layout_width="wrap_content"
+                android:layout_height="280dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_gradient"
+                android:elevation="5dp"
+                android:clipToOutline="true"
+                app:srcCompat="@drawable/placeholder_post_img" />
+
+            <!-- Post Title -->
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lamborghini"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="48sp"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- Rental Period (daily, weekly, monthly) -->
+                <TextView
+                    android:id="@+id/rent_period"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="WEEKLY"
+                    android:textColor="@color/grey"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Price (per rental period) -->
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="$4000"
+                    android:textColor="@color/green_600"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Post Description -->
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/large_text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
