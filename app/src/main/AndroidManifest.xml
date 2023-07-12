@@ -21,6 +21,12 @@
             android:name=".presentation.ScrollingActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".presentation.MainActivity">
+        </activity>
+        <activity
+            android:name=".presentation.SignUpActivity">
+        </activity>
     </application>
 
 </manifest>
