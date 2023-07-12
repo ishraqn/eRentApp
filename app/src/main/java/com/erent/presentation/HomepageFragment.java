@@ -1,5 +1,6 @@
 package com.erent.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,10 +18,14 @@ import com.erent.R;
 import com.erent.objects.Post;
 import com.erent.persistence.stubs.PostPersistence;
 
-public class HomepageFragment extends Fragment {
+import java.util.List;
+
+public class HomepageFragment extends Fragment implements RecyclerViewInterface {
 
     RecyclerView recyclerView;
-    IPostLogic posts;
+    IPostLogic postLogic;
+
+    List<Post> posts;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,11 +37,23 @@ public class HomepageFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         recyclerView = (RecyclerView) getView().findViewById(R.id.home_recycler_view);
-        posts = new PostLogic(new PostPersistence());
+        postLogic = new PostLogic(new PostPersistence());
+        posts = postLogic.getAllPosts();
 
         recyclerView = (RecyclerView) getView().findViewById(R.id.home_recycler_view);
 
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        recyclerView.setAdapter(new HomepageAdapter(getContext().getApplicationContext(), posts.getAllPosts()));
+        recyclerView.setAdapter(new HomepageAdapter(getContext().getApplicationContext(), posts, this));
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        int postID = posts.get(position).getPostID();
+
+        Intent switchActivityIntent = new Intent(getActivity(), PostActivity.class);
+
+        switchActivityIntent.putExtra("postID", postID);
+
+        startActivity(switchActivityIntent);
     }
 }

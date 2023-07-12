@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/post"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/post"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient">
@@ -10,7 +10,7 @@
     <!-- Top bar (back and rent buttons) -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="414dp"
+        android:layout_width="0dp"
         android:layout_height="94dp"
         android:background="@drawable/gradient"
         android:elevation="10dp"
@@ -29,6 +29,7 @@
             android:layout_marginBottom="7dp"
             android:background="@null"
             android:elevation="10dp"
+            android:onClick="returnToHomepage"
             android:padding="14dp"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -95,8 +96,8 @@
                 android:layout_height="280dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/button_gradient"
-                android:elevation="5dp"
                 android:clipToOutline="true"
+                android:elevation="5dp"
                 app:srcCompat="@drawable/placeholder_post_img" />
 
             <!-- Post Title -->
@@ -106,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:text="Lamborghini"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="48sp"/>
+                android:textSize="48sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -148,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/large_text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
         </LinearLayout>
     </ScrollView>

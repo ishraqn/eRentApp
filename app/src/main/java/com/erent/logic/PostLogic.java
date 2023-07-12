@@ -32,6 +32,11 @@ public class PostLogic implements IPostLogic{
     }
 
     @Override
+    public Post getPostByID(int id) {
+        return postDB.getPostByID(id);
+    }
+
+    @Override
     public boolean deletePost(int postID)
     {
         return postDB.deletePost(postID);

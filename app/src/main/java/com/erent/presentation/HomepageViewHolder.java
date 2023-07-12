@@ -15,12 +15,25 @@ public class HomepageViewHolder extends RecyclerView.ViewHolder{
     TextView rentPeriodView;
     TextView priceView;
 
-    public HomepageViewHolder(@NonNull View itemView)
+    public HomepageViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface)
     {
         super(itemView);
         imageView = itemView.findViewById(R.id.image);
         titleView = itemView.findViewById(R.id.title);
         rentPeriodView = itemView.findViewById(R.id.rent_period);
         priceView = itemView.findViewById(R.id.price);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(recyclerViewInterface != null) {
+                    int position = getAdapterPosition();
+
+                    if(position != RecyclerView.NO_POSITION) {
+                        recyclerViewInterface.onItemClick(position);
+                    }
+                }
+            }
+        });
     }
 }
