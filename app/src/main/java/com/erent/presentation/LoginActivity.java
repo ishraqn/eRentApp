@@ -3,6 +3,7 @@ package com.erent.presentation;
 import android.os.Bundle;
 import com.erent.R;
 
+import com.erent.persistence.utils.DBHelper;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.login);
+
+        DBHelper.copyDatabaseToDevice(this);
 
     }
 }
