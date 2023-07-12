@@ -84,4 +84,19 @@ public class PostLogicTest {
 
         System.out.println("Finished testGetFirstNPostsGreater\n");
     }
+
+    @Test
+    public void testGetPostByID() {
+        PostLogic pl = new PostLogic(new PostPersistence());
+        int postID = 1;
+        Post post = pl.getPostByID(postID);
+
+        assertEquals(postID,post.getPostID());
+        assertEquals("Electric Breaker 35 lbs",post.getPostName());
+        assertEquals("Brett",post.getPostedBy());
+        assertEquals("66 Chancellors Circle, Winnipeg",post.getLocation());
+        assertEquals("Construction",post.getCategory());
+
+        System.out.println("Finished testGetPostByID\n");
+    }
 }
