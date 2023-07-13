@@ -11,7 +11,7 @@
         android:title="Bookmarks"
         android:icon="@drawable/icon_bookmark"/>
     <item android:id="@id/layout_profile"
-        android:title="Rentals"
+        android:title="Profile"
         android:icon="@drawable/icon_profile"/>
 
 </menu>
