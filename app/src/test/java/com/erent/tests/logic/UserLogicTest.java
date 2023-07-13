@@ -76,5 +76,27 @@ public class UserLogicTest {
 
         System.out.println("Finished testUserAuthentication\n");
     }
+
+    @Test
+    public void testUserExits() {
+        System.out.println("Starting testUserExits");
+
+        UserLogic userLogic = new UserLogic(new UserPersistence());
+        User user = userLogic.createNewUser("John", "1234");
+        assertTrue(userLogic.userExists("John"));
+
+        System.out.println("Finished testUserExits\n");
+    }
+
+    @Test
+    public void testUserExitsFails() {
+        System.out.println("Starting testUserExits");
+
+        UserLogic userLogic = new UserLogic(new UserPersistence());
+        User user = userLogic.createNewUser("John", "1234");
+        assertFalse(userLogic.userExists("Not John"));
+
+        System.out.println("Finished testUserExits\n");
+    }
 }
 

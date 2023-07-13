@@ -10,5 +10,4 @@ public interface IUserPersistence
 
     boolean deleteUser(String username);
 
-    boolean authenticateUser(String username, String password);
 }

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.erent.R;
+import com.erent.application.Services;
 import com.erent.logic.IUserLogic;
 import com.erent.logic.UserLogic;
 import com.erent.persistence.stubs.UserPersistence;
@@ -25,7 +26,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         setContentView(R.layout.sign_up);
 
-        uLogic = new UserLogic(new UserPersistence());
+        uLogic = new UserLogic(Services.getUserPersistence());
     }
 
     public void signUp(View view) {
@@ -42,11 +43,11 @@ public class SignUpActivity extends AppCompatActivity {
         username = usernameField.getText().toString();
         password = passwordField.getText().toString();
 
-        if(uLogic.authenticateUser(username)) {
+        if(uLogic.userExists(username)) {
             usernameField.setError("Username is already taken");
         }
         else {
-            uLogic.createNewUser(username);
+            uLogic.createNewUser(username, password);
 
             Intent switchActivityIntent = new Intent(this, LoginActivity.class);
             startActivity(switchActivityIntent);

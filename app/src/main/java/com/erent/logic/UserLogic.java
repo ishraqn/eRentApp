@@ -26,6 +26,17 @@ public class UserLogic implements IUserLogic{
     @Override
     public boolean authenticateUser(String username, String password)
     {
-        return userDB.authenticateUser(username, password);
+        User user = userDB.getUserByUsername(username);
+
+        if(user == null) {
+            return false;
+        } else {
+            return user.getPassword().equals(password);
+        }
+    }
+
+    @Override
+    public boolean userExists(String username) {
+        return userDB.getUserByUsername(username) != null;
     }
 }

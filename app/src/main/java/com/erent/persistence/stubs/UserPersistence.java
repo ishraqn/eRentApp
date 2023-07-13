@@ -56,12 +56,4 @@ public class UserPersistence implements IUserPersistence
 
         return userList.remove(userToDelete);
     }
-
-    @Override
-    public boolean authenticateUser(String username, String password)
-    {
-        User user = getUserByUsername(username);
-
-        return user.authenticateUser(password);
-    }
 }
