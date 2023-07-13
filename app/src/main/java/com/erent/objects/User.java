@@ -16,8 +16,5 @@ public class User
         return username;
     }
 
-    public boolean authenticateUser(String password)
-    {
-        return this.password == password;
-    }
+    public String getPassword() { return password; }
 }

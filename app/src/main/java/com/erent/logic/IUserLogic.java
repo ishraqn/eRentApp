@@ -7,4 +7,5 @@ public interface IUserLogic
     User createNewUser(String username, String password);
     boolean deleteUser(String username);
     boolean authenticateUser(String username, String password);
+    boolean userExists(String username);
 }

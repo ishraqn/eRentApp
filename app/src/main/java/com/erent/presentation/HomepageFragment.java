@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.erent.application.Services;
 import com.erent.logic.IPostLogic;
 import com.erent.logic.PostLogic;
 import com.erent.R;
@@ -24,7 +25,6 @@ public class HomepageFragment extends Fragment implements RecyclerViewInterface 
 
     RecyclerView recyclerView;
     IPostLogic postLogic;
-
     List<Post> posts;
 
     @Override
@@ -37,7 +37,7 @@ public class HomepageFragment extends Fragment implements RecyclerViewInterface 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         recyclerView = (RecyclerView) getView().findViewById(R.id.home_recycler_view);
-        postLogic = new PostLogic(new PostPersistence());
+        postLogic = new PostLogic(Services.getPostPersistence());
         posts = postLogic.getAllPosts();
 
         recyclerView = (RecyclerView) getView().findViewById(R.id.home_recycler_view);

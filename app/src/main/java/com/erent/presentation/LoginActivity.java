@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.erent.R;
 
+import com.erent.application.Services;
 import com.erent.logic.IUserLogic;
 import com.erent.logic.UserLogic;
 import com.erent.objects.User;
+import com.erent.persistence.stubs.PostPersistence;
 import com.erent.persistence.stubs.UserPersistence;
 import com.erent.persistence.utils.DBHelper;
 
@@ -46,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
         DBHelper.copyDatabaseToDevice(this);
 
-        uLogic = new UserLogic(new UserPersistence());
+        uLogic = new UserLogic(Services.getUserPersistence());
     }
 
     public void login(View view) {
@@ -63,14 +65,14 @@ public class LoginActivity extends AppCompatActivity {
         username = usernameField.getText().toString();
         password = passwordField.getText().toString();
 
-        if(uLogic.authenticateUser(username)) {
-            /* Insert code to store logged in user */
+        if(uLogic.authenticateUser(username, password)) {
+            Services.setCurrentUser(username);
 
             /* Switch to the homepage once logged in */
             Intent switchActivityIntent = new Intent(this, MainActivity.class);
             startActivity(switchActivityIntent);
         } else {
-            /*do nothing right now*/
+            usernameField.setError("Incorrect username and/or password");
         }
     }
 

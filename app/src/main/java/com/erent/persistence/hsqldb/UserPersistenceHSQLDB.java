@@ -104,23 +104,4 @@ public class UserPersistenceHSQLDB implements IUserPersistence {
         }
         return isDeleted;
     }
-
-    @Override
-    public boolean authenticateUser(String username, String password) {
-        boolean exists = false;
-        try (Connection connection = connection()) {
-                final PreparedStatement statement = connection.prepareStatement("SELECT * FROM USERS WHERE USERNAME = ? AND PASSWORD = ?");
-                statement.setString(1, username);
-                statement.setString(2, password);
-                final ResultSet resultSet = statement.executeQuery();
-                exists = resultSet.next();
-
-                resultSet.close();
-                statement.close();
-        } catch (final SQLException e) {
-            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
-            e.printStackTrace();
-        }
-        return exists;
-    }
 }
