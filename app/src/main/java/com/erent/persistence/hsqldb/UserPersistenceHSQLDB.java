@@ -1,10 +1,7 @@
 package com.erent.persistence.hsqldb;
 
-import android.util.Log;
-
 import com.erent.objects.User;
 import com.erent.persistence.IUserPersistence;
-
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -50,7 +47,7 @@ public class UserPersistenceHSQLDB implements IUserPersistence {
             statement.close();
 
         } catch (final SQLException e) {
-            Log.e("Connect SQL", e.getMessage() + e.getSQLState());
+            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
             e.printStackTrace();
         }
         return user;
@@ -73,7 +70,7 @@ public class UserPersistenceHSQLDB implements IUserPersistence {
             }
 
         } catch (final SQLException e) {
-            Log.e("Connect SQL", e.getMessage() + e.getSQLState());
+            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
             e.printStackTrace();
         }
         return user;
@@ -102,7 +99,7 @@ public class UserPersistenceHSQLDB implements IUserPersistence {
             }
 
         } catch (final SQLException e) {
-            Log.e("Connect SQL", e.getMessage() + e.getSQLState());
+            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
             e.printStackTrace();
         }
         return isDeleted;
@@ -114,14 +111,14 @@ public class UserPersistenceHSQLDB implements IUserPersistence {
         try (Connection connection = connection()) {
                 final PreparedStatement statement = connection.prepareStatement("SELECT * FROM USERS WHERE USERNAME = ? AND PASSWORD = ?");
                 statement.setString(1, username);
-                statement.setString(1, username);
+                statement.setString(2, password);
                 final ResultSet resultSet = statement.executeQuery();
                 exists = resultSet.next();
 
                 resultSet.close();
                 statement.close();
         } catch (final SQLException e) {
-            Log.e("Connect SQL", e.getMessage() + e.getSQLState());
+            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
             e.printStackTrace();
         }
         return exists;
