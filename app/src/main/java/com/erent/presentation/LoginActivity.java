@@ -46,8 +46,6 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.login);
 
-        DBHelper.copyDatabaseToDevice(this);
-
         uLogic = new UserLogic(Services.getUserPersistence());
     }
 
