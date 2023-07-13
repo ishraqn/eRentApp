@@ -45,4 +45,58 @@ public class PostLogicTest {
 
         System.out.println("Finished testDeletePost\n");
     }
+
+    @Test
+    public void testGetFirstNPostsEqual() {
+        PostLogic pl = new PostLogic(new PostPersistence());
+        List<Post> firstNPosts;
+        int n = 5;
+
+        firstNPosts = pl.getFirstNPosts(n);
+
+        assertEquals(5, firstNPosts.size());
+
+        System.out.println("Finished testGetFirstNPostsEqual\n");
+    }
+
+    @Test
+    public void testGetFirstNPostsLess() {
+        PostLogic pl = new PostLogic(new PostPersistence());
+        List<Post> firstNPosts;
+        int n = 4;
+
+        firstNPosts = pl.getFirstNPosts(n);
+
+        assertEquals(4, firstNPosts.size());
+
+        System.out.println("Finished testGetFirstNPostsLess\n");
+    }
+
+    @Test
+    public void testGetFirstNPostsGreater() {
+        PostLogic pl = new PostLogic(new PostPersistence());
+        List<Post> firstNPosts;
+        int n = 7;
+
+        firstNPosts = pl.getFirstNPosts(n);
+
+        assertEquals(5, firstNPosts.size());
+
+        System.out.println("Finished testGetFirstNPostsGreater\n");
+    }
+
+    @Test
+    public void testGetPostByID() {
+        PostLogic pl = new PostLogic(new PostPersistence());
+        int postID = 1;
+        Post post = pl.getPostByID(postID);
+
+        assertEquals(postID,post.getPostID());
+        assertEquals("Electric Breaker 35 lbs",post.getPostName());
+        assertEquals("Brett",post.getPostedBy());
+        assertEquals("66 Chancellors Circle, Winnipeg",post.getLocation());
+        assertEquals("Construction",post.getCategory());
+
+        System.out.println("Finished testGetPostByID\n");
+    }
 }

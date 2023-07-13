@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ERent">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.InitActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +18,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.ScrollingActivity"
-            android:exported="true">
+            android:name=".presentation.LoginActivity">
+        </activity>
+        <activity
+            android:name=".presentation.MainActivity">
+        </activity>
+        <activity
+            android:name=".presentation.SignUpActivity">
+        </activity>
+        <activity
+            android:name=".presentation.PostActivity">
         </activity>
     </application>
 

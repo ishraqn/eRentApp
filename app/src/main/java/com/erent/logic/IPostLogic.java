@@ -7,7 +7,10 @@ import java.util.List;
 public interface IPostLogic
 {
     Post createNewPost(String postName,String location, String category);
-    public List<Post> getAllPosts();
-    public boolean deletePost(int postID);
+    List<Post> getAllPosts();
+    List<Post> getFirstNPosts(int n);
+
+    Post getPostByID(int id);
+    boolean deletePost(int postID);
 
 }

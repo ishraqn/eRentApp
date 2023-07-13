@@ -6,11 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".presentation.HomepageFragment">
 
+    <!-- Title for page -->
     <TextView
+        android:id="@+id/saved_posts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BOOKMARKED POSTS"
-        android:textSize="24dp"
-        android:layout_centerInParent="true"/>
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:text="Bookmarked Posts"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- Recycler view, to display user's bookmarked posts -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/saved_posts"
+        android:layout_marginTop="0dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
 
 </RelativeLayout>

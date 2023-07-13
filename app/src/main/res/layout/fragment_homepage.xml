@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".presentation.HomepageFragment">
 
+    <!-- recyclerView, to show latest posts -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_recycler_view"
         android:layout_width="match_parent"

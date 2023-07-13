@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/buttonSignUp"
             android:layout_width="320dp"
             android:layout_height="40dp"
             android:layout_marginBottom="16dp"
@@ -26,6 +26,7 @@
             android:padding="0dp"
             android:text="@string/sign_up"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:onClick="goToSignUp"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/inputButtonPassword"
             android:layout_width="320dp"
             android:layout_height="80dp"
             android:layout_marginBottom="32dp"
@@ -46,13 +47,13 @@
             android:textColorHint="@color/grey"
             android:textSize="24sp"
             app:backgroundTint="@null"
-            app:layout_constraintBottom_toTopOf="@+id/button_login"
+            app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/inputButtonUsername"
             android:layout_width="320dp"
             android:layout_height="80dp"
             android:layout_marginBottom="12dp"
@@ -65,13 +66,13 @@
             android:textColorHint="@color/grey"
             android:textSize="24sp"
             app:backgroundTint="@null"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+            app:layout_constraintBottom_toTopOf="@+id/inputButtonPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button_login"
+            android:id="@+id/buttonLogin"
             android:layout_width="320dp"
             android:layout_height="80dp"
             android:layout_marginBottom="16dp"
@@ -82,8 +83,9 @@
             android:text="Login"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textSize="24sp"
+            android:onClick="login"
             app:backgroundTint="@null"
-            app:layout_constraintBottom_toTopOf="@+id/button5"
+            app:layout_constraintBottom_toTopOf="@+id/buttonSignUp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent" />

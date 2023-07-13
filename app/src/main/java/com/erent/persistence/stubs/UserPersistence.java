@@ -14,25 +14,11 @@ public class UserPersistence implements IUserPersistence
     {
         userList = new ArrayList<>();
 
-        userList.add(new User(1, "Brett"));
-        userList.add(new User(2, "Alejandro"));
-        userList.add(new User(3, "Kaiden"));
-        userList.add(new User(4, "Shaun"));
-        userList.add(new User(5, "Ishraq"));
-    }
-
-    @Override
-    public User getUserByID(int userID)
-    {
-        for(int i = 0; i < userList.size(); i++)
-        {
-            if(userList.get(i).getUserID() == userID)
-            {
-                return userList.get(i);
-            }
-        }
-
-        return null;
+        userList.add(new User("Brett", "1234"));
+        userList.add(new User("Alejandro", "1234"));
+        userList.add(new User("Kaiden", "1234"));
+        userList.add(new User("Shaun", "1234"));
+        userList.add(new User("Ishraq", "1234"));
     }
 
     @Override
@@ -50,7 +36,7 @@ public class UserPersistence implements IUserPersistence
     }
 
     @Override
-    public User createUser(String username)
+    public User createUser(String username, String password)
     {
         /* Do not create a new user if the user already exists */
         if(getUserByUsername(username) != null)
@@ -58,15 +44,15 @@ public class UserPersistence implements IUserPersistence
             return null;
         }
 
-        User user = new User(userList.size() + 1, username);
+        User user = new User(username, password);
         userList.add(user);
         return user;
     }
 
     @Override
-    public boolean deleteUser(int userID)
+    public boolean deleteUser(String username)
     {
-        User userToDelete = getUserByID(userID);
+        User userToDelete = getUserByUsername(username);
 
         return userList.remove(userToDelete);
     }

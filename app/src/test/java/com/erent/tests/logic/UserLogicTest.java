@@ -23,12 +23,10 @@ public class UserLogicTest {
 
         UserLogic userLogic = new UserLogic(new UserPersistence());
 
-        User user = userLogic.createNewUser("John");        //DB has 5 built-in members
-        assertEquals(6, user.getUserID());                  //ID is sequential
+        User user = userLogic.createNewUser("John", "1234");
         assertEquals("John", user.getUsername());
 
-        User secondUser = userLogic.createNewUser("Doe");
-        assertEquals(7, secondUser.getUserID());
+        User secondUser = userLogic.createNewUser("Doe", "1234");
         assertEquals("Doe", secondUser.getUsername());
 
         System.out.println("Finished testCreateUserLogic\n");
@@ -41,8 +39,8 @@ public class UserLogicTest {
 
         UserLogic userLogic = new UserLogic(new UserPersistence());
 
-        User user = userLogic.createNewUser("John");
-        User userDuplicate = userLogic.createNewUser("John");
+        User user = userLogic.createNewUser("John", "1234");
+        User userDuplicate = userLogic.createNewUser("John", "1234");
         assertNull(userDuplicate);
 
         System.out.println("Finished testDuplicateUserLogic\n");
@@ -55,11 +53,11 @@ public class UserLogicTest {
 
         UserLogic userLogic = new UserLogic(new UserPersistence());
 
-        User user = userLogic.createNewUser("John");
-        boolean wasDeleted = userLogic.deleteUser(user.getUserID());
+        User user = userLogic.createNewUser("John", "1234");
+        boolean wasDeleted = userLogic.deleteUser(user.getUsername());
         assertTrue(wasDeleted);
 
-        wasDeleted = userLogic.deleteUser(8);  //List has pre-built 5 members
+        wasDeleted = userLogic.deleteUser("John");  //List has pre-built 5 members
         assertFalse(wasDeleted);
 
         System.out.println("Finished testDeleteUserLogic\n");
@@ -72,11 +70,33 @@ public class UserLogicTest {
 
         UserLogic userLogic = new UserLogic(new UserPersistence());
 
-        User user = userLogic.createNewUser("John");
-        boolean toLogin = userLogic.authenticateUser("John");
+        User user = userLogic.createNewUser("John", "1234");
+        boolean toLogin = userLogic.authenticateUser("John", "1234");
         assertTrue(toLogin);
 
         System.out.println("Finished testUserAuthentication\n");
+    }
+
+    @Test
+    public void testUserExits() {
+        System.out.println("Starting testUserExits");
+
+        UserLogic userLogic = new UserLogic(new UserPersistence());
+        User user = userLogic.createNewUser("John", "1234");
+        assertTrue(userLogic.userExists("John"));
+
+        System.out.println("Finished testUserExits\n");
+    }
+
+    @Test
+    public void testUserExitsFails() {
+        System.out.println("Starting testUserExits");
+
+        UserLogic userLogic = new UserLogic(new UserPersistence());
+        User user = userLogic.createNewUser("John", "1234");
+        assertFalse(userLogic.userExists("Not John"));
+
+        System.out.println("Finished testUserExits\n");
     }
 }
 
