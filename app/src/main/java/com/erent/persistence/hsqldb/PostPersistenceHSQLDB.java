@@ -1,9 +1,6 @@
 package com.erent.persistence.hsqldb;
 
-import android.util.Log;
-
 import com.erent.objects.Post;
-import com.erent.objects.User;
 import com.erent.persistence.IPostPersistence;
 
 import java.sql.Connection;
@@ -41,7 +38,7 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
     @Override
     public List<Post> getPostList()
     {
-        final List<Post> posts = new ArrayList<>();
+        List<Post> posts = new ArrayList<>();
         try (Connection connection = connection()) {
             final PreparedStatement statement = connection.prepareStatement("SELECT * FROM POSTS");
             final ResultSet resultSet = statement.executeQuery();
@@ -54,7 +51,7 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
             statement.close();
 
         } catch (final SQLException e) {
-            Log.e("Connect SQL", e.getMessage() + e.getSQLState());
+            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
             e.printStackTrace();
         }
         return posts;
@@ -65,7 +62,7 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
     {
         final List<Post> posts = new ArrayList<>();
         try (Connection connection = connection()) {
-            final PreparedStatement statement = connection.prepareStatement("SELECT TOP ? FROM POSTS");
+            final PreparedStatement statement = connection.prepareStatement("SELECT * FROM POSTS LIMIT ?");
             statement.setInt(1, numberOfPosts);
             final ResultSet resultSet = statement.executeQuery();
 
@@ -77,7 +74,7 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
             statement.close();
 
         } catch (final SQLException e) {
-            Log.e("Connect SQL", e.getMessage() + e.getSQLState());
+            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
             e.printStackTrace();
         }
         return posts;
@@ -99,7 +96,7 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
             statement.close();
 
         } catch (final SQLException e) {
-            Log.e("Connect SQL", e.getMessage() + e.getSQLState());
+            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
             e.printStackTrace();
         }
 
@@ -122,7 +119,7 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
             statement.close();
 
         } catch (final SQLException e) {
-            Log.e("Connect SQL", e.getMessage() + e.getSQLState());
+            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
             e.printStackTrace();
         }
 
@@ -136,20 +133,39 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
         int rentduration = 1;
         String pictureName = "placeholder_post_img";
         try (Connection connection = connection()) {
-            final PreparedStatement statement = connection.prepareStatement("INSERT INTO USERS VALUES(?, ?, ?, ?, ?, ?, ?)");
-            statement.setString(1, postName);
-            statement.setString(2, postedBy);
-            statement.setString(3, location);
-            statement.setString(4, category);
-            statement.setFloat(5, price);
-            statement.setInt(6, rentduration);
-            statement.setString(7, pictureName);
+            // Get the highest ID in the posts table so the new post will have unique ID
+            List<Post> posts = getPostList();
+            int greatestID = 0;
+            for (int i = 0; i < posts.size(); i++)
+            {
+                if(posts.get(i).getPostID() > greatestID)
+                {
+                    greatestID = posts.get(i).getPostID();
+                }
+            }
+
+            // Insert the post into the database
+            final PreparedStatement statement = connection.prepareStatement("INSERT INTO POSTS VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+            statement.setInt(1, greatestID + 1);
+            statement.setString(2, postName);
+            statement.setString(3, postedBy);
+            statement.setString(4, location);
+            statement.setString(5, category);
+            statement.setFloat(6, price);
+            statement.setInt(7, rentduration);
+            statement.setString(8, pictureName);
             statement.executeUpdate();
+
+            // Get the post data from the database
             final PreparedStatement statement2 = connection.prepareStatement(" SELECT * FROM POSTS WHERE POSTNAME = ? AND POSTEDBY = ?");
             statement2.setString(1, postName);
             statement2.setString(2, postedBy);
-            final ResultSet resultSet = statement.executeQuery();
-            post = fromResultSet(resultSet);
+            final ResultSet resultSet = statement2.executeQuery();
+
+            // Create a post from the post data if possible
+            if (resultSet.next()) {
+                post = fromResultSet(resultSet);
+            }
 
             //update the USERS_POSTS table
             final PreparedStatement statement3 = connection.prepareStatement("INSERT INTO USERS_POSTS VALUES(?, ?)");
@@ -163,7 +179,7 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
             statement3.close();
 
         } catch (final SQLException e) {
-            Log.e("Connect SQL", e.getMessage() + e.getSQLState());
+            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
             e.printStackTrace();
         }
 
@@ -190,7 +206,7 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
             }
 
         } catch (final SQLException e) {
-            Log.e("Connect SQL", e.getMessage() + e.getSQLState());
+            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
             e.printStackTrace();
         }
         return isDeleted;
