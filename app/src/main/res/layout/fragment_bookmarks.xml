@@ -17,7 +17,8 @@
         android:layout_marginBottom="12dp"
         android:text="Bookmarked Posts"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="40sp" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <!-- Recycler view, to display user's bookmarked posts -->
     <androidx.recyclerview.widget.RecyclerView

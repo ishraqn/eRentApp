@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.erent.R;
@@ -53,19 +54,18 @@ public class ProfileFragment extends Fragment {
 
         User user = userPersistence.getUserByUsername(loggedUser);
         userProfilePicture.setImageIcon(null);
-        userName.setText("user.getUsername()");         //cannot login so anyone who can please unquote the function
+        userName.setText(user.getUsername());
 
         userPostPersistence = Services.getPostPersistence();
         posts = userPostPersistence.getPostList();
 
-        // delete since no posts are to be shown
-//        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-//        recyclerView.setAdapter(new HomepageAdapter(getContext().getApplicationContext(), posts, new RecyclerViewInterface() {
-//            @Override
-//            public void onItemClick(int position) {
-//
-//            }
-//        }));
-//        recyclerView = (RecyclerView) getView().findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recyclerView.setAdapter(new HomepageAdapter(getContext().getApplicationContext(), posts, new RecyclerViewInterface() {
+            @Override
+            public void onItemClick(int position) {
+
+            }
+        }));
+        recyclerView = (RecyclerView) getView().findViewById(R.id.recycler_view);
     }
 }
