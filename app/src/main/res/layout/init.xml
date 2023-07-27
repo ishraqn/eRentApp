@@ -2,10 +2,27 @@
 
 <!-- This layout initializes the app -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/layout_init"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_init"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"/>
+    android:background="@drawable/gradient"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="320dp"
+        android:layout_height="80dp"
+        android:background="@drawable/button_gradient"
+        android:backgroundTint="@null"
+        android:fontFamily="sans-serif-medium"
+        android:onClick="login"
+        android:padding="10dp"
+        android:text="Login"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="24sp"
+        app:backgroundTint="@null" />
+
+</LinearLayout>

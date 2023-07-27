@@ -8,4 +8,5 @@ public interface IUserLogic
     boolean deleteUser(String username);
     boolean authenticateUser(String username, String password);
     boolean userExists(String username);
+    boolean validPassword(String password);
 }

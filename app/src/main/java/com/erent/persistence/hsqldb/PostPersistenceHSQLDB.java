@@ -14,6 +14,12 @@ import java.util.List;
 public class PostPersistenceHSQLDB implements IPostPersistence {
 
     private final String dbPath;
+    private final String defaultLocation = "22 Jump Street";
+    private final String defaultCategory = "Construction";
+    private final String defaultPictureName = "placeholder_post_img";
+    private final String defaultRentalCondition = "No";
+    private final String defaultRentedBy = null;
+
 
     public PostPersistenceHSQLDB(final String dbPath)
     {
@@ -30,9 +36,22 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
         final int postId = rs.getInt("postid");
         final String postName = rs.getString("postname");
         final String postedBy = rs.getString("postedby");
-        final String location = rs.getString("location");
-        final String category = rs.getString("category");
-        return new Post(postId,postName,postedBy,location,category);
+        final String description = rs.getString("description");
+        final float price = rs.getFloat("price");
+        final int rentDuration = rs.getInt("rentduration");
+        final String isRented = rs.getString("isrented");
+        final String rentedBy = rs.getString("rentedBy");
+
+        Post post =  new Post(postId, postName, postedBy, description, price, rentDuration);
+
+        if(isRented.equals("Yes"))
+            post.setIsRentedToTrue();
+        else
+            post.setIsRentedToFalse();
+
+        post.setRentedBy(rentedBy);
+
+        return post;
     }
 
     @Override
@@ -64,6 +83,52 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
         try (Connection connection = connection()) {
             final PreparedStatement statement = connection.prepareStatement("SELECT * FROM POSTS LIMIT ?");
             statement.setInt(1, numberOfPosts);
+            final ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Post post = fromResultSet(resultSet);
+                posts.add(post);
+            }
+            resultSet.close();
+            statement.close();
+
+        } catch (final SQLException e) {
+            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
+            e.printStackTrace();
+        }
+        return posts;
+    }
+
+    @Override
+    public List<Post> getPostByUser(String userName)
+    {
+        List<Post> posts = new ArrayList<>();
+        try (Connection connection = connection()) {
+            final PreparedStatement statement = connection.prepareStatement("SELECT * FROM POSTS WHERE POSTEDBY = ?");
+            statement.setString(1,userName);
+            final ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Post post = fromResultSet(resultSet);
+                posts.add(post);
+            }
+            resultSet.close();
+            statement.close();
+
+        } catch (final SQLException e) {
+            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
+            e.printStackTrace();
+        }
+        return posts;
+    }
+
+    @Override
+    public List<Post> getPostNotByUser(String userName)
+    {
+        List<Post> posts = new ArrayList<>();
+        try (Connection connection = connection()) {
+            final PreparedStatement statement = connection.prepareStatement("SELECT * FROM POSTS WHERE POSTEDBY != ?");
+            statement.setString(1,userName);
             final ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -127,11 +192,48 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
     }
 
     @Override
-    public Post createPost(String postName, String postedBy, String location, String category) {
+    public void setRentalToTrue(int postID, String userName)
+    {
+        try (Connection connection = connection()) {
+            final PreparedStatement statement = connection.prepareStatement("UPDATE POSTS SET ISRENTED = ? WHERE POSTID = ?");
+            statement.setString(1, "Yes");
+            statement.setInt(2, postID);
+            statement.executeUpdate();
+            final PreparedStatement statement2 = connection.prepareStatement("UPDATE POSTS SET RENTEDBY = ? WHERE POSTID = ?");
+            statement2.setString(1, userName);
+            statement2.setInt(2, postID);
+            statement2.executeUpdate();
+
+            statement.close();
+            statement2.close();
+
+        } catch (final SQLException e) {
+            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void setRentalToFalse(int postID)
+    {
+        try (Connection connection = connection()) {
+            final PreparedStatement statement = connection.prepareStatement("UPDATE POSTS SET ISRENTED = ? WHERE POSTID = ?");
+            statement.setString(1, "No");
+            statement.setInt(2, postID);
+            statement.executeUpdate();
+            final PreparedStatement statement2 = connection.prepareStatement("UPDATE POSTS SET RENTEDBY = NULL WHERE POSTID = ?");
+            statement2.setInt(1, postID);
+            statement.close();
+
+        } catch (final SQLException e) {
+            System.out.println("Connect SQL, " + e.getMessage() + ", " + e.getSQLState());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Post createPost(String postName, String postedBy, String description, float price, int rentDuration) {
         Post post = null;
-        float price = 100;
-        int rentduration = 1;
-        String pictureName = "placeholder_post_img";
         try (Connection connection = connection()) {
             // Get the highest ID in the posts table so the new post will have unique ID
             List<Post> posts = getPostList();
@@ -145,21 +247,23 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
             }
 
             // Insert the post into the database
-            final PreparedStatement statement = connection.prepareStatement("INSERT INTO POSTS VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+            final PreparedStatement statement = connection.prepareStatement("INSERT INTO POSTS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setInt(1, greatestID + 1);
             statement.setString(2, postName);
             statement.setString(3, postedBy);
-            statement.setString(4, location);
-            statement.setString(5, category);
+            statement.setString(4, defaultLocation);
+            statement.setString(5, defaultCategory);
             statement.setFloat(6, price);
-            statement.setInt(7, rentduration);
-            statement.setString(8, pictureName);
+            statement.setInt(7, rentDuration);
+            statement.setString(8, defaultPictureName);
+            statement.setString(9, defaultRentalCondition);
+            statement.setString(10, defaultRentedBy);
+            statement.setString(11, description);
             statement.executeUpdate();
 
             // Get the post data from the database
-            final PreparedStatement statement2 = connection.prepareStatement(" SELECT * FROM POSTS WHERE POSTNAME = ? AND POSTEDBY = ?");
-            statement2.setString(1, postName);
-            statement2.setString(2, postedBy);
+            final PreparedStatement statement2 = connection.prepareStatement(" SELECT * FROM POSTS WHERE POSTID = ?");
+            statement2.setInt(1, greatestID + 1);
             final ResultSet resultSet = statement2.executeQuery();
 
             // Create a post from the post data if possible
@@ -191,7 +295,7 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
     {
         boolean isDeleted = false;
         try (Connection connection = connection()) {
-            //check if the user  exists
+            //check if the post exists
             if(getPostByID(postID) != null)  {
                 final PreparedStatement statement = connection.prepareStatement("DELETE FROM USERS_POSTS WHERE POSTID = ?");
                 statement.setInt(1, postID);
@@ -199,10 +303,14 @@ public class PostPersistenceHSQLDB implements IPostPersistence {
                 final PreparedStatement statement2 = connection.prepareStatement("DELETE FROM POSTS WHERE POSTID = ?");
                 statement2.setInt(1, postID);
                 statement2.executeUpdate();
+                final PreparedStatement statement3 = connection.prepareStatement("DELETE FROM BOOKMARKS WHERE POSTID = ?");
+                statement3.setInt(1, postID);
+                statement3.executeUpdate();
                 isDeleted = true;
 
                 statement.close();
                 statement2.close();
+                statement3.close();
             }
 
         } catch (final SQLException e) {

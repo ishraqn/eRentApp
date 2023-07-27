@@ -29,4 +29,9 @@ public class InitActivity extends AppCompatActivity {
         Intent switchActivityIntent = new Intent(this, LoginActivity.class);
         startActivity(switchActivityIntent);
     }
+
+    public void login(View view) {
+        Intent switchActivityIntent = new Intent(this, LoginActivity.class);
+        startActivity(switchActivityIntent);
+    }
 }

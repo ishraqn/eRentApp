@@ -28,15 +28,30 @@ public class UserLogic implements IUserLogic{
     {
         User user = userDB.getUserByUsername(username);
 
+        // If the user does not exist, it cannot be authentic, so return false
         if(user == null) {
             return false;
-        } else {
-            return user.getPassword().equals(password);
         }
+
+        // If the user does exist, compare its password to the passed password and return the result
+        return user.getPassword().equals(password);
     }
 
     @Override
     public boolean userExists(String username) {
         return userDB.getUserByUsername(username) != null;
+    }
+
+    @Override
+    public boolean validPassword(String password) {
+        char[] asArray = password.toCharArray();
+
+        for(int i = 0; i < asArray.length; i++) {
+            if(Character.isDigit(asArray[i])) {
+                return password.length() > 7;
+            }
+        }
+
+        return false;
     }
 }

@@ -8,9 +8,11 @@ import static org.junit.Assert.*;
 import com.erent.objects.Post;
 import com.erent.logic.PostLogic;
 import com.erent.persistence.hsqldb.PostPersistenceHSQLDB;
+import com.erent.persistence.stubs.PostPersistence;
 import com.erent.tests.utils.TestUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
 
@@ -37,14 +39,16 @@ public class PostLogicIT {
     public void testCreateNewPost() {
         List<Post>  allPosts;
 
-        postLogic.createNewPost("Car", "Winnipeg", "Transport");
+        postLogic.createNewPost("Car", "It's a car", 100.0f, 1);
         allPosts = postLogic.getAllPosts();
 
         // Verify the post was created
         assertEquals(6, allPosts.get(5).getPostID());
 
         // Verify the data of the post is correct
-        assertEquals("Winnipeg", allPosts.get(5).getLocation());
+        assertEquals("It's a car", allPosts.get(5).getDescription());
+        assertEquals(100.0f, allPosts.get(5).getPrice(), 0.001f);
+        assertEquals(1, allPosts.get(5).getRentDuration());
 
         // Verify the post was added to the database
         assertEquals(6, allPosts.size());
@@ -57,7 +61,7 @@ public class PostLogicIT {
         List<Post>  allPosts;
 
         // Create a post
-        postLogic.createNewPost("Car", "Winnipeg", "Transport");
+        postLogic.createNewPost("Car", "It's a car", 100, 1);
         allPosts = postLogic.getAllPosts();
 
         // Verify the post was created (with id 6)
@@ -70,7 +74,7 @@ public class PostLogicIT {
         postLogic.deletePost(1);
 
         // Create another post
-        postLogic.createNewPost("Truck", "Toronto", "Transport");
+        postLogic.createNewPost("Truck", "It's a truck", 200, 1);
         allPosts = postLogic.getAllPosts();
 
         // When a post is created, it's ID is the highest ID in the database plus 1
@@ -88,7 +92,7 @@ public class PostLogicIT {
         List<Post>  allPosts;
 
         // Create a post
-        postLogic.createNewPost("Car", "Winnipeg", "Transport");
+        postLogic.createNewPost("Car", "It's a car", 100, 1);
         allPosts = postLogic.getAllPosts();
 
         // Verify the post was created (with id 6)
@@ -101,7 +105,7 @@ public class PostLogicIT {
         postLogic.deletePost(6);
 
         // Create another post
-        postLogic.createNewPost("Truck", "Toronto", "Transport");
+        postLogic.createNewPost("Truck", "It's a truck", 200, 1);
         allPosts = postLogic.getAllPosts();
 
         // Since the highest ID in the post table is 5 (since the post with ID 6 was deleted), the
@@ -161,6 +165,82 @@ public class PostLogicIT {
         assertEquals(5, firstNPosts.size());
 
         System.out.println("Finished testGetFirstNPostsGreater\n");
+    }
+
+    @Test
+    public void testGetPostByUser()
+    {
+        List<Post> list;
+        String userName = "Brett";
+        list = postLogic.getPostByUser(userName);
+        for(int i = 0; i < list.size(); ++i)
+        {
+            assertEquals("Brett",list.get(i).getPostedBy());
+        }
+
+        System.out.println("Finished testGetPostByUser\n");
+    }
+
+    @Test
+    public void testGetPostNotByUser()
+    {
+        List<Post> list;
+        String userName = "Brett";
+        list = postLogic.getPostNotByUser(userName);
+        for(int i = 0; i < list.size(); ++i)
+        {
+            assertNotEquals("Brett",list.get(i).getPostedBy());
+        }
+
+        System.out.println("Finished testGetPostNotByUser\n");
+    }
+
+    @Test
+    public void testSetRentalToTrue()
+    {
+        int postID = 1;
+        String userName = "Brett";
+        postLogic.setRentalToTrue(postID,userName);
+        Post post = postLogic.getPostByID(postID);
+        assertTrue(post.getIsRental());
+        assertEquals("Brett",post.getRentedBy());
+
+        System.out.println("Finished testSetRentalToTrue\n");
+    }
+
+    @Test
+    public void testSetRentalToFalse()
+    {
+        int postID = 1;
+        postLogic.setRentalToFalse(postID);
+        Post post = postLogic.getPostByID(postID);
+        assertFalse(post.getIsRental());
+        assertNull(post.getRentedBy());
+
+        System.out.println("Finished testSetRentalToFalse\n");
+    }
+
+    @Test
+    public void testGetPostsFromIDList() {
+        List<Integer> postIDS = new ArrayList<>();
+        postIDS.add(1);
+        postIDS.add(2);
+        postIDS.add(3);
+
+        List<Post> posts = postLogic.getPostsFromIDList(postIDS);
+        assertEquals(posts.size(),3);
+
+        System.out.println("Finished testgetPostsFromIDList\n");
+    }
+
+    @Test
+    public void testGetPostsFromIDListEmpty() {
+        List<Integer> postIDS = new ArrayList<>();
+
+        List<Post> posts = postLogic.getPostsFromIDList(postIDS);
+        assertEquals(posts.size(),0);
+
+        System.out.println("Finished testgetPostsFromIDList\n");
     }
 
     @After

@@ -1,5 +1,6 @@
 package com.erent.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,13 +58,19 @@ public class ProfileFragment extends Fragment {
         userName.setText(user.getUsername());
 
         userPostPersistence = Services.getPostPersistence();
-        posts = userPostPersistence.getPostList();
+        posts = userPostPersistence.getPostByUser(Services.getCurrentUser());
 
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setAdapter(new HomepageAdapter(getContext().getApplicationContext(), posts, new RecyclerViewInterface() {
             @Override
             public void onItemClick(int position) {
+                int postID = posts.get(position).getPostID();
 
+                Intent switchActivityIntent = new Intent(getActivity(), PostActivity.class);
+
+                switchActivityIntent.putExtra("postID", postID);
+
+                startActivity(switchActivityIntent);
             }
         }));
         recyclerView = (RecyclerView) getView().findViewById(R.id.recycler_view);

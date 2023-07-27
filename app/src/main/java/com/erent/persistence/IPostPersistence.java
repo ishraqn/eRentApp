@@ -10,11 +10,19 @@ public interface IPostPersistence {
 
     List<Post> getFirstNPosts(int numberOfPosts);
 
+    List<Post> getPostByUser(String userName);
+
+    List<Post> getPostNotByUser(String userName);
+
     Post getPostByID(int postID);
 
     Post getPostByPostName(String postName);
 
-    Post createPost(String postName, String postedBy, String location, String category);
+    void setRentalToTrue(int postID, String userName);
+
+    void setRentalToFalse(int postID);
+
+    Post createPost(String postName, String postedBy, String description, float price, int rentDuration);
 
     boolean deletePost(int postID);
 }

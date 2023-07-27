@@ -9,7 +9,7 @@
         android:icon="@drawable/icon_rentals"/>
     <item android:id="@id/layout_bookmarks"
         android:title="Bookmarks"
-        android:icon="@drawable/icon_bookmark"/>
+        android:icon="@drawable/icon_bookmark_filled"/>
     <item android:id="@id/layout_profile"
         android:title="Profile"
         android:icon="@drawable/icon_profile"/>

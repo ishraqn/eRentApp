@@ -19,13 +19,11 @@ public class PostTest {
     {
         System.out.println("Starting testConstructPost");
 
-        Post post = new Post(6,"Microphone", "Brett","Winnipeg","sound");
+        Post post = new Post(6,"Microphone", "Brett","Winnipeg", 100, 1);
 
         assertEquals(6,post.getPostID());
         assertEquals("Microphone",post.getPostName());
         assertEquals("Brett",post.getPostedBy());
-        assertEquals("Winnipeg",post.getLocation());
-        assertEquals("sound",post.getCategory());
         assertEquals(100, post.getPrice(), 0);
         assertEquals(1, post.getRentDuration(), 0);
         assertEquals("placeholder_post_img", post.getPictureName());

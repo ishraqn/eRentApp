@@ -1,5 +1,6 @@
 package com.erent.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import com.erent.R;
 
@@ -26,8 +27,6 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import java.util.Objects;
 
-//import com.erent.databinding.ActivityScrollingBinding;
-
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView navBar;
@@ -45,9 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.homepage);
 
-        /* Set the homepage as our starting fragment */
+        Intent myIntent = getIntent();
+        boolean postDeleted = myIntent.getBooleanExtra("postDeleted", false);
+        boolean onBookmarkPage = myIntent.getBooleanExtra("onBookmarkPage", false);
+        boolean onRentalPage = myIntent.getBooleanExtra("onRentalPage", false);
+
         navBar = findViewById(R.id.nav_bar);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFrag).commit();
 
         /* Override the default function to set the proper fragment when the navigation bar is selected. */
         navBar.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener()
@@ -77,5 +79,16 @@ public class MainActivity extends AppCompatActivity {
                 return swapped;
             }
         });
+
+        /* Set starting fragment */
+        if(postDeleted) {
+            navBar.setSelectedItemId(R.id.layout_profile);
+        } else if (onBookmarkPage) {
+            navBar.setSelectedItemId(R.id.layout_bookmarks);
+        } else if (onRentalPage) {
+            navBar.setSelectedItemId(R.id.layout_rentals);
+        } else {
+            navBar.setSelectedItemId(R.id.layout_homepage);
+        }
     }
 }

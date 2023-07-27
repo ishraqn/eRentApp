@@ -91,11 +91,15 @@ public class UserPersistenceHSQLDB implements IUserPersistence {
                 final PreparedStatement statement3 = connection.prepareStatement("DELETE FROM USERS WHERE USERNAME = ?");
                 statement3.setString(1, username);
                 statement3.executeUpdate();
+                final PreparedStatement statement4 = connection.prepareStatement("DELETE FROM BOOKMARKS WHERE USERNAME = ?");
+                statement4.setString(1, username);
+                statement4.executeUpdate();
                 isDeleted = true;
 
                 statement.close();
                 statement2.close();
                 statement3.close();
+                statement4.close();
             }
 
         } catch (final SQLException e) {
