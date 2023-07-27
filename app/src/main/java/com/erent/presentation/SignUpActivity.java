@@ -26,7 +26,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         setContentView(R.layout.sign_up);
 
-        uLogic = new UserLogic(Services.getUserPersistence());
+        uLogic = Services.getUserLogic();
     }
 
     public void signUp(View view) {
@@ -45,12 +45,19 @@ public class SignUpActivity extends AppCompatActivity {
 
         if(uLogic.userExists(username)) {
             usernameField.setError("Username is already taken");
+        } else if (username.length() < 5) {
+            usernameField.setError("Username must be at least 5 characters");
         }
         else {
-            uLogic.createNewUser(username, password);
+            if(uLogic.validPassword(password)) {
 
-            Intent switchActivityIntent = new Intent(this, LoginActivity.class);
-            startActivity(switchActivityIntent);
+                uLogic.createNewUser(username, password);
+
+                Intent switchActivityIntent = new Intent(this, LoginActivity.class);
+                startActivity(switchActivityIntent);
+            } else {
+                passwordField.setError("Password must be 8 characters and contain 1 number");
+            }
         }
     }
 

@@ -7,7 +7,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient">
 
-    <!-- Top bar (back and rent buttons) -->
+    <!-- Top bar, contents change dynamically based on if the logged in user
+         owns the post or not.
+
+         a. They do, show DELETE button only.
+         b. They don't, show BOOKMARK (icon) and RENT buttons.
+    -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
@@ -38,6 +43,66 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/icon_back"
             tools:layout_editor_absoluteX="1dp" />
+
+            <!-- Rent Button -->
+            <Button
+                android:id="@+id/buttonRent"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="7dp"
+                android:background="@drawable/button_green"
+                android:backgroundTint="@null"
+                android:fontFamily="sans-serif-medium"
+                android:padding="10dp"
+                android:text="Rent"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="24sp"
+                android:onClick="rent"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.97"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Delete Button -->
+            <Button
+                android:id="@+id/buttonDelete"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="7dp"
+                android:background="@drawable/button_gradient"
+                android:backgroundTint="@null"
+                android:fontFamily="sans-serif-medium"
+                android:padding="10dp"
+                android:text="Delete"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="24sp"
+                android:onClick="deletePost"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.97"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Bookmark button -->
+        <ImageButton
+            android:id="@+id/buttonBookmark"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:background="@null"
+            android:elevation="10dp"
+            android:padding="18dp"
+            android:scaleType="fitCenter"
+            android:onClick="bookmark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/buttonBack"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icon_bookmark_unfilled" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Contents of post, which are scrollable -->

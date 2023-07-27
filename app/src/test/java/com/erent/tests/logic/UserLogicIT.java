@@ -96,6 +96,70 @@ public class UserLogicIT {
         System.out.println("Finished testUserAuthentication\n");
     }
 
+    @Test
+    public void testUserAuthenticationNull()
+    {
+        System.out.println("Starting testUserAuthenticationNull");
+
+        boolean toLogin = userLogic.authenticateUser("John", "1234");
+        assertFalse(toLogin);
+
+        System.out.println("Finished testUserAuthenticationNull\n");
+    }
+
+    @Test
+    public void testUserExists()
+    {
+        System.out.println("Starting testUserExists");
+
+        User user = userLogic.createNewUser("John", "1234");
+        boolean exists = userLogic.userExists("John");
+        assertTrue(exists);
+
+        System.out.println("Finished testUserExists\n");
+    }
+
+    @Test
+    public void testUserExistsFails()
+    {
+        System.out.println("Starting testUserExists");
+
+        boolean exists = userLogic.userExists("John");
+        assertFalse(exists);
+
+        System.out.println("Finished testUserExists\n");
+    }
+
+    @Test
+    public void testValidPassword() {
+        System.out.println("Starting testValidPassword");
+
+        String password1 = "numbers1";
+        String password2 = "12345678";
+        String password3 = "21jumpstreet!";
+
+        assertTrue(userLogic.validPassword(password1));
+        assertTrue(userLogic.validPassword(password2));
+        assertTrue(userLogic.validPassword(password3));
+
+        System.out.println("Finished testValidPassword\n");
+    }
+
+    @Test
+    public void testValidPasswordFails() {
+        System.out.println("Starting testValidPasswordFails");
+
+        String password1 = "1234567";
+        String password2 = "superlongpassword";
+        String password3 = "short1";
+
+        assertFalse(userLogic.validPassword(password1));
+        assertFalse(userLogic.validPassword(password2));
+        assertFalse(userLogic.validPassword(password3));
+
+        System.out.println("Finished testValidPasswordFails\n");
+    }
+
     @After
     public void tearDown() {
         // reset DB after tests

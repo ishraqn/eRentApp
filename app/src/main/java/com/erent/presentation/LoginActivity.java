@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.login);
 
-        uLogic = new UserLogic(Services.getUserPersistence());
+        uLogic = Services.getUserLogic();
     }
 
     public void login(View view) {
@@ -68,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
             /* Switch to the homepage once logged in */
             Intent switchActivityIntent = new Intent(this, MainActivity.class);
+            switchActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(switchActivityIntent);
         } else {
             usernameField.setError("Incorrect username and/or password");

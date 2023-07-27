@@ -29,6 +29,9 @@
         <activity
             android:name=".presentation.PostActivity">
         </activity>
+        <activity
+            android:name=".presentation.CreatePostActivity">
+        </activity>
     </application>
 
 </manifest>

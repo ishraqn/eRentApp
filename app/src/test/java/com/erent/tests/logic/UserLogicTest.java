@@ -98,5 +98,37 @@ public class UserLogicTest {
 
         System.out.println("Finished testUserExits\n");
     }
+
+    @Test
+    public void testValidPassword() {
+        System.out.println("Starting testValidPassword");
+
+        UserLogic userLogic = new UserLogic(new UserPersistence());
+        String password1 = "numbers1";
+        String password2 = "12345678";
+        String password3 = "21jumpstreet!";
+
+        assertTrue(userLogic.validPassword(password1));
+        assertTrue(userLogic.validPassword(password2));
+        assertTrue(userLogic.validPassword(password3));
+
+        System.out.println("Finished testValidPassword\n");
+    }
+
+    @Test
+    public void testValidPasswordFails() {
+        System.out.println("Starting testValidPasswordFails");
+
+        UserLogic userLogic = new UserLogic(new UserPersistence());
+        String password1 = "1234567";
+        String password2 = "superlongpassword";
+        String password3 = "short1";
+
+        assertFalse(userLogic.validPassword(password1));
+        assertFalse(userLogic.validPassword(password2));
+        assertFalse(userLogic.validPassword(password3));
+
+        System.out.println("Finished testValidPasswordFails\n");
+    }
 }
 
