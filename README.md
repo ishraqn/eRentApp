@@ -26,8 +26,14 @@ Also you can login to an existing account:
 
 ## Group Contribution
 
-This project was a collaborative effort by four students for COMP 3350 at The University of Manitoba, CA.
+This project was a collaborative effort by four students for COMP 3350 at The University of Manitoba, CA. The Contributors are as follows:
 
+- Alejandro Labra
+- Brett Loewen
+- Ishraq Nazrul
+- Kaiden Bereznycky
+- Shaun Paraplammoottil Cheriyan
+- 
 ## Vision Statement
 
 - Our [vision statement](docs/VISION.md)
