@@ -1,4 +1,4 @@
-# SegmentationFault
+# eRent Android App
 
 An app which is based off the old saying *"Try-before-you-buy"*, where reducing waste is priority number 1.
 
@@ -23,6 +23,10 @@ Also you can login to an existing account:
 - Go to `app\src\test\java\com\erent\tests` (`app/java/com/erent/tests/AllUnitTests.java` in Android Studio's 'Android' view)
 - To run the unit tests, right click on `AllUnitTests.java` and select "Run 'AllUnitTests'" from the options
 - To run the integration tests, right click on `AllIntergrationTests.java` and select "Run 'AllIntergrationTests'" from the options
+
+## Group Contribution
+
+This project was a collaborative effort by four students for COMP 3350 at The University of Manitoba, CA.
 
 ## Vision Statement
 
